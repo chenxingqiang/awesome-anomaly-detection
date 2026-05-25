@@ -16,10 +16,10 @@ Created: 2019-03-27
 Updated: 2024-09-03
 """
 
-from rulsif.config import first_time, only_evaluation
-from rulsif.driving_data_preprocess import apply_preprocess
-from rulsif.find_aggressive_driving_event import find_event
-from rulsif.parallel_aggressive_driving_detection import apply_detection
+from anomaly_detection.applications.driving.config import first_time, only_evaluation
+from anomaly_detection.applications.driving.driving_data_preprocess import apply_preprocess
+from anomaly_detection.applications.driving.find_aggressive_driving_event import find_event
+from anomaly_detection.applications.driving.parallel_aggressive_driving_detection import apply_detection
 
 
 def main():

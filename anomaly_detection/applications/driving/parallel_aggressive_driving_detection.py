@@ -10,9 +10,9 @@ from concurrent.futures import ThreadPoolExecutor, wait
 import numpy as np
 import pandas as pd
 
-from rulsif.config import data_check_path, data_prod_path, \
+from anomaly_detection.applications.driving.config import data_check_path, data_prod_path, \
     settings, before_Times, n, MPI, restart, start, end, data_feature_list
-from rulsif.rulsif import RULSIF
+from anomaly_detection.time_series.rulsif.rulsif import RULSIFDetector as RULSIF
 
 _executor_pool = ThreadPoolExecutor(max_workers=32)
 

@@ -1,10 +1,14 @@
 """
 Application-specific anomaly detection methods.
 
-This module will contain implementations of anomaly detection algorithms
-tailored for specific applications such as KPI monitoring, log analysis,
-driving data analysis, etc.
+This module contains implementations of anomaly detection algorithms
+tailored for specific applications such as:
+- Driving behavior analysis (driving submodule)
+- KPI monitoring
+- Log analysis
+- And more
 """
 
-# Placeholder for future implementations
-__all__ = []
+from . import driving
+
+__all__ = ["driving"]
