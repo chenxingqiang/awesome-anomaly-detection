@@ -5,8 +5,22 @@
 [![PyPI version](https://badge.fury.io/py/awesome-anomaly-detection.svg)](https://badge.fury.io/py/awesome-anomaly-detection)
 [![Documentation](https://readthedocs.org/projects/awesome-anomaly-detection/badge/?version=latest)](https://awesome-anomaly-detection.readthedocs.io/)
 [![Build Status](https://github.com/chenxingqiang/awesome-anomaly-detection/workflows/CI/badge.svg)](https://github.com/chenxingqiang/awesome-anomaly-detection/actions)
+[![Downloads](https://pepy.tech/badge/awesome-anomaly-detection)](https://pepy.tech/project/awesome-anomaly-detection)
 
-A comprehensive Python library for anomaly detection including classical methods, deep learning approaches, time series methods, and application-specific algorithms. This library provides a unified interface for various anomaly detection algorithms, making it easy to compare and use different approaches for your specific use case.
+> **A powerful, easy-to-use Python library for anomaly detection** 🔍  
+> From classical methods to state-of-the-art deep learning - everything you need in one place!
+
+Whether you're a **data scientist**, **ML engineer**, or **researcher**, this library provides a unified, scikit-learn-like API for detecting anomalies in your data. Perfect for fraud detection, system monitoring, quality control, and more!
+
+## ✨ Why Choose This Library?
+
+🎯 **Unified API** - Consistent interface across all algorithms (like scikit-learn)  
+📦 **Batteries Included** - Utilities for data loading, preprocessing, visualization, and evaluation  
+🚀 **Production Ready** - Optimized implementations with proper error handling  
+📚 **Well Documented** - Extensive examples, tutorials, and API documentation  
+🔧 **Extensible** - Easy to add custom algorithms and integrate with existing workflows  
+🎓 **Research-Backed** - Implementations based on peer-reviewed papers  
+⚡ **Fast & Efficient** - Optimized for performance on large datasets
 
 ## 🌟 Features
 
@@ -18,46 +32,118 @@ A comprehensive Python library for anomaly detection including classical methods
 - **Production Ready**: Optimized implementations with proper error handling
 - **Active Development**: Regular updates and new algorithm implementations
 
+## 📖 Table of Contents
+
+- [Quick Start (⚡ 2 minutes)](#-quick-start)
+- [Installation Guide](#-installation)
+- [Usage Examples](#-usage-examples)
+  - [Beginner Examples](#for-beginners)
+  - [Advanced Examples](#for-advanced-users)
+  - [Real-World Use Cases](#-real-world-use-cases)
+- [Available Algorithms](#-available-algorithms)
+- [Utilities & Tools](#-utilities--tools)
+- [API Reference](#-api-reference)
+- [Performance Guide](#-performance--optimization)
+- [Troubleshooting](#-troubleshooting)
+- [Contributing](#-contributing)
+- [FAQ](#-frequently-asked-questions)
+
 ## 🚀 Quick Start
+
+Get started in less than 2 minutes! ⚡
 
 ### Installation
 
 ```bash
-# Install the core package
 pip install awesome-anomaly-detection
-
-# Install with deep learning support
-pip install awesome-anomaly-detection[deep]
-
-# Install with full dependencies
-pip install awesome-anomaly-detection[full]
-
-# Install from source (recommended for development)
-git clone https://github.com/chenxingqiang/awesome-anomaly-detection.git
-cd awesome-anomaly-detection
-pip install -e .
 ```
 
-### Basic Usage
+### Your First Anomaly Detection (30 seconds!)
 
 ```python
 from anomaly_detection.time_series import RULSIFDetector
-import numpy as np
+from anomaly_detection.utils import generate_anomaly_data
 
-# Generate sample data
-np.random.seed(42)
-data = np.random.randn(1000, 3)
+# Generate sample data with anomalies
+X, y = generate_anomaly_data(n_samples=1000, contamination=0.1)
 
-# Use RULSIF for time series change detection
-rulsif = RULSIFDetector(alpha=0.5, n_kernels=50)
-rulsif.fit(data)
-scores = rulsif.score_samples(data)
-change_points = rulsif.detect_changes(data)
+# Create and fit detector
+detector = RULSIFDetector()
+detector.fit(X)
 
-print(f"Detected {np.sum(change_points)} change points")
+# Detect anomalies
+predictions = detector.predict(X)
+scores = detector.score_samples(X)
+
+print(f"Found {predictions.sum()} anomalies out of {len(X)} samples")
+# Output: Found ~100 anomalies out of 1000 samples
 ```
 
-## 📊 Current Implementation Status
+**That's it!** You've just detected anomalies in your data. 🎉
+
+### Next Steps
+
+- 📘 [**Beginner Tutorial**](#for-beginners) - Learn the basics step by step
+- 🚀 [**Real-World Examples**](#-real-world-use-cases) - See practical applications
+- 📚 [**API Documentation**](#-api-reference) - Explore all available methods
+- 💬 [**Get Help**](#-troubleshooting) - Troubleshooting and FAQ
+
+---
+
+## 💻 Installation
+
+### Basic Installation (Recommended)
+
+```bash
+pip install awesome-anomaly-detection
+```
+
+### Installation with Optional Dependencies
+
+```bash
+# With deep learning support (PyTorch & TensorFlow)
+pip install awesome-anomaly-detection[deep]
+
+# With all optional dependencies
+pip install awesome-anomaly-detection[full]
+
+# For development (includes testing & linting tools)
+pip install awesome-anomaly-detection[dev]
+```
+
+### Install from Source
+
+```bash
+# Clone the repository
+git clone https://github.com/chenxingqiang/awesome-anomaly-detection.git
+cd awesome-anomaly-detection
+
+# Install in editable mode
+pip install -e .
+
+# Or install with development dependencies
+pip install -e .[dev]
+```
+
+### Verify Installation
+
+```python
+import anomaly_detection
+print(anomaly_detection.__version__)  # Should print: 0.1.0
+
+# Check available modules
+from anomaly_detection import RULSIFDetector, AnomalyMetrics
+print("✅ Installation successful!")
+```
+
+### System Requirements
+
+- **Python**: 3.7, 3.8, 3.9, 3.10, or 3.11
+- **Operating System**: Linux, macOS, or Windows
+- **RAM**: Minimum 4GB (8GB+ recommended for large datasets)
+- **Dependencies**: Automatically installed with pip
+
+---
 
 ### ✅ Implemented & Ready to Use
 - **RULSIF Detector**: Fully functional time series change point detection
