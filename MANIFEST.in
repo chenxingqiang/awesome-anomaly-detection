@@ -17,10 +17,17 @@ include examples/*.md
 include examples/*.ipynb
 include examples/*.txt
 
+# Exclude images and data directories completely from distribution
+prune imgs
+prune examples/original_format_data
+prune examples/synthetic_driving_data
+
 # Exclude large data files from package
-exclude examples/original_format_data/*.csv
-exclude examples/synthetic_driving_data/*.csv
 global-exclude *.csv
+global-exclude *.png
+global-exclude *.jpg
+global-exclude *.jpeg
+global-exclude *.gif
 
 # Exclude unnecessary files
 global-exclude *.pyc
