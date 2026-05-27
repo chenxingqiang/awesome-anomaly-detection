@@ -6,13 +6,28 @@ include requirements-dev.txt
 
 # Include package data
 recursive-include anomaly_detection *.py
-recursive-include tests *.py
-
-# Include examples
-recursive-include examples *.py
 
 # Include documentation
 recursive-include docs *.md *.rst *.txt
+include aggressive_driving_analysis.md
+
+# Include example Python scripts only (not data files)
+include examples/*.py
+include examples/*.md
+include examples/*.ipynb
+include examples/*.txt
+
+# Exclude images and data directories completely from distribution
+prune imgs
+prune examples/original_format_data
+prune examples/synthetic_driving_data
+
+# Exclude large data files from package
+global-exclude *.csv
+global-exclude *.png
+global-exclude *.jpg
+global-exclude *.jpeg
+global-exclude *.gif
 
 # Exclude unnecessary files
 global-exclude *.pyc
@@ -27,3 +42,8 @@ global-exclude .idea
 global-exclude *.egg-info
 global-exclude dist
 global-exclude build
+
+# Exclude old rulsif directory at root
+prune rulsif
+# Exclude tests from package distribution
+prune tests
